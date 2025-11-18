@@ -45,7 +45,6 @@
                     <tr>
                         <th>N° Multa</th>
                         <th>Placa</th>
-                        <th>Conductor</th>
                         <th>Infracción</th>
                         <th>Fecha</th>
                         <th>Monto</th>
@@ -62,7 +61,6 @@
                                 {{ multa.placa }}
                             </span>
                         </td>
-                        <td>{{ multa.conductor|default:"No registrado" }}</td>
                         <td>
                             {{ multa.infraccion }}
                             {% if multa.codigo %}
