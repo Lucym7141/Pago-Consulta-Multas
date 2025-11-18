@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+{% block title %}Inicio - MultaPay{% endblock %}
+
+{% block extra_styles %}
+<style>
+body {
+    background: #f8f9fa;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    border-radius: 25px;
+    padding: 5rem 2rem;
+    margin: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(13, 110, 253, 0.3);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+}
+
+.hero * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary-custom {
+    background: white;
+    color: #0d6efd;
+    padding: 1.3rem 2.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    color: #0d6efd;
+}
+
+.btn-outline-custom {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1.3rem 2.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+    background: white;
+    color: #0d6efd;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.card-section {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.card-section:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(13, 110, 253, 0.15);
+    border-color: #0d6efd;
+}
+
+.section-title {
+    color: #0d6efd;
+    text-align: center;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin: 4rem 0 3rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 100%);
+    border-radius: 2px;
+}
+
+.icon-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+}
+
+.card-section h5 {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.card-section p {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.review-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #0d6efd;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 12px 35px rgba(13, 110, 253, 0.2);
+}
+
+.review-card strong {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.review-card p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.text-warning {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.about-section {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.about-section p {
+    color: #475569;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary-custom, .btn-outline-custom {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-badge">✨ Consultoría de Multas Basada en Resultados</div>
+        <h1>Consulta tus multas al instante</h1>
+        <p>Rápido, seguro y confiable. La solución digital para gestionar tus multas de tránsito.</p>
+
+        {% if not user.is_authenticated %}
+            <div class="cta-buttons">
+                <a href="{% url 'user_login' %}" class="btn-primary-custom">✨ Comenzar Ahora</a>
+                <a href="{% url 'consulta' %}" class="btn-outline-custom">🔍 Consultar Multa</a>
+            </div>
+        {% else %}
+            <div class="cta-buttons">
+                <a href="{% url 'consulta' %}" class="btn-primary-custom">🔍 Consultar Multas</a>
+                <a href="{% url 'user_dashboard' %}" class="btn-outline-custom">👤 Mi Perfil</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- QUIÉNES SOMOS -->
+    <h2 class="section-title">¿Quiénes Somos?</h2>
+    <div class="about-section">
+        <p>Somos una plataforma especializada en facilitar la consulta y gestión de multas de tránsito, ofreciendo un servicio rápido, seguro y 100% confiable.</p>
+    </div>
+
+    <!-- QUÉ HACEMOS -->
+    <h2 class="section-title">¿Qué Hacemos?</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <div class="card-section">
+                <div class="icon-circle">🔍</div>
+                <h5>Consulta Rápida</h5>
+                <p>Busca por placa del vehículo en segundos.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card-section">
+                <div class="icon-circle">📄</div>
+                <h5>Detalle Completo</h5>
+                <p>Información detallada: estado, valor, fecha y motivo de la multa.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card-section">
+                <div class="icon-circle">💳</div>
+                <h5>Pago Seguro</h5>
+                <p>Paga tus multas de forma segura directamente en la plataforma.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPINIONES -->
+    <h2 class="section-title">Lo que Dicen Nuestros Usuarios</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="review-card">
+                <strong>Juan P.</strong>
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="mb-0">"Rápido y confiable. Encontré mis multas en minutos."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="review-card">
+                <strong>Ana M.</strong>
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="mb-0">"Interfaz clara y fácil de usar. Excelente servicio."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="review-card">
+                <strong>Carlos R.</strong>
+                <div class="text-warning mb-2">★★★★☆</div>
+                <p class="mb-0">"Muy buen servicio, me ayudó a organizar mis pagos."</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
